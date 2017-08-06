@@ -18,7 +18,7 @@ int char_pos = 0;
 int main(int argc, char* argv[]){
 
     if(argc < 4){
-        printf("USAGE: \n\t ./vgnr [operation: code/decode] [path/to/file/with/original/text] [path/to/create/file/with/encrypted/text]\n");
+        printf("USAGE: \n\t ./vgnr [operation: code/decode] [path/to/file/with/original(or crypted)/text] [path/to/create/file/with/encrypted(or decrypted)/text]\n");
         exit(EXIT_FAILURE);
     }
 
