@@ -17,8 +17,8 @@ int char_pos = 0;
 
 int main(int argc, char* argv[]){
 
-    if(argc < 4){
-        printf("USAGE: \n\t ./vgnr [operation: code/decode] [path/to/file/with/original(or crypted)/text] [path/to/create/file/with/encrypted(or decrypted)/text]\n");
+    if(argc < 5){
+        printf("USAGE: \n\t ./vgnr [operation: code/decode] [path/to/file/with/original(or crypted)/text] [path/to/create/file/with/encrypted(or decrypted)/text] [encode/decode keyword]\n");
         exit(EXIT_FAILURE);
     }
 
@@ -29,13 +29,18 @@ int main(int argc, char* argv[]){
     }
     printf("OK. Specified file opened. ");
 
+    if(argv[4] == NULL){
+        printf("You must specify keyword! (no longer than 12 characters)\n");
+        exit(EXIT_FAILURE);
+    }
+
                             /***************
                             *** CODING ***
                             ****************/
     if(strcmp(argv[1], "code") == STRINGS_EQUAL){
         char* response = NULL;
         int check_status = 0;
-        printf("%s\n", check(response, &check_status));
+        printf("%s\n", check(argv[4], response, &check_status));
         if(check_status)
             exit(EXIT_FAILURE);
 
@@ -59,7 +64,7 @@ int main(int argc, char* argv[]){
             }
             else
             {
-                encode(word_from_file, encrypted);
+                encode(argv[4], word_from_file, encrypted);
                 fputc(input, encrypted);
                 char_pos = 0;
                 memset(word_from_file, 0, WORD_MAX_LEN);
