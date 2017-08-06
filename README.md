@@ -4,9 +4,8 @@ Program encrypts the text using Viginere cipher. Decryption is possible IF the s
 
 1) Copy all files to one folder on your computer;
 
-2) In terminal type "make";
+2) In terminal type "make" to generate executable or "sudo make" to call program from any folder;
 
 3) Call program with no parameters to see usage.
 
 
-Keyword and alphabet offset are located in file operate.c.
