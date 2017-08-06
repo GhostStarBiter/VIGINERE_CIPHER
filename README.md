@@ -8,7 +8,10 @@ Clone repository. Goto clonned repo dir and run `make`:
 
 ```
 git clone git@github.com:GhostStarBiter/VIGINERE_CIPHER.git
-cd path/to/VIGINERE_CIPHER && sudo make
+
+cd path/to/VIGINERE_CIPHER && make (for local usage)
+OR
+cd path/to/VIGINERE_CIPHER && make global (to access to program from any place on computer)
 ```
 
 ### Usage
