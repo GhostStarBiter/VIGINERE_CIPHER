@@ -8,6 +8,11 @@
 #define ASCII_A 65
 #define A_TO_Z  26
 
+/*
+Implementation feature is that the KEYWORD and OFFSET (alphabet offset) defined in this file.
+It might be not convenient if dymanic encrypting/decrypting with different keywords and offsets is needed, but it could be implemented with some upgrade of the code.
+In case of changing the keyword OR offset value you should execute make again to get the executable file "vgnr" with desired keyword and offset.
+*/
 
 /** ALPHABET OFFSET **/
 #define OFFSET 11  //value must be from 0 to 25
