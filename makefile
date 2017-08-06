@@ -1,7 +1,10 @@
+current_dir = $(shell pwd)
+
 all: vgnr
 
 vgnr: main.c operate.c
-	gcc main.c operate.c -o vgnr
+	gcc -Wall main.c operate.c -o vgnr
+	ln -s ${current_dir}/vgnr /bin/viginer
 
 clean:
 	rm -f vgnr
