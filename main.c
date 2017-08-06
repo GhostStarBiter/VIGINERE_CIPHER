@@ -81,7 +81,7 @@ int main(int argc, char* argv[]){
     if(strcmp(argv[1], "decode") == STRINGS_EQUAL){
         char* response = NULL;
         int check_status = 0;
-        printf("%s\n", check(response, &check_status));
+        printf("%s\n", check(argv[4], response, &check_status));
         if(check_status)
             exit(EXIT_FAILURE);
 
@@ -105,7 +105,7 @@ int main(int argc, char* argv[]){
             }
             else
             {
-                decode(word_from_file, decrypted);
+                decode(argv[4], word_from_file, decrypted);
                 fputc(input, decrypted);
                 char_pos = 0;
                 memset(word_from_file, 0, WORD_MAX_LEN);
