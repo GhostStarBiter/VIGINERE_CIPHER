@@ -4,8 +4,6 @@ Program encrypts the text using Viginere cipher. Decryption is possible IF the s
 
 1) Copy all files to one folder on your computer;
 
-2) Place text to encrypt to file in the same folder.
+2) In terminal type "make";
 
-3) In terminal type "make";
-
-4) Call program with no parameters to see usage.
+3) Call program with no parameters to see usage.
