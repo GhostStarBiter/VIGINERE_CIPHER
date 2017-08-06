@@ -8,8 +8,7 @@ Implementation feature is that the KEYWORD and OFFSET (alphabet offset) adjusts 
 
 To encrypt:
     - place the file with text in same directory with the executable;
-    - call terminal in directory and execute the program with first parameter - name of the file with text
-                                                            second parameter - action "code" or "decode"
+    - execute the program "vgnr" with first parameter - name of the file with open text - and second parameter - action "code";
       Example: ./vgnr opentext code - to encrypt the text in file named "opentext";
       The result of this action is file named "coded" which contains the ciphered text depending on specified KEYWORD and OFFSET.
 
