@@ -49,8 +49,8 @@ int main(int argc, char* argv[]){
         while(!feof(input_file)){   //read characters from file while end of file is reached
             input = fgetc(input_file);
             /** check is the read character a letter **/
-            if((input >=65) && (input <=90) ||
-                    (input >= 97) && (input <= 122)){
+            if((input >=65 && input <=90) ||
+                    (input >= 97 && input <= 122)){
                 /**adjust all lowercase letters to uppercase**/
                 if((input >= 97) && (input <= 122))
                     input -= 32;
@@ -90,8 +90,8 @@ int main(int argc, char* argv[]){
         while(!feof(input_file)){
             input = fgetc(input_file);
             /** check is the read character a letter **/
-            if((input >=65) && (input <=90) ||
-                    (input >= 97) && (input <= 122)){
+            if((input >=65 && input <=90) ||
+                    (input >= 97 && input <= 122)){
                 /**adjust all lowercase letters to uppercase**/
                 if((input >= 97) && (input <= 122))
                     input -= 32;
