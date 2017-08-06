@@ -17,18 +17,13 @@ int char_pos = 0;
 
 int main(int argc, char* argv[]){
 
-    if(argc < 3){
-        printf("You must specify text file in same directory and operation type!\n");
-        printf("Example: [program_name] [file_name] [operation: code/decode]\n");
+    if(argc < 4){
+        printf("USAGE: \n\t ./vgnr [operation: code/decode] [path/to/file/with/original/text] [path/to/create/file/with/encrypted/text]\n");
         exit(EXIT_FAILURE);
     }
 
-    getcwd(path, PATH_LEN);
-    strcat(path, "/");
-    strcat(path, argv[1]);
-
     FILE* input_file;
-    if((input_file = fopen(path, "r")) == NULL){
+    if((input_file = fopen(argv[2], "r")) == NULL){
         printf("Error while opening specified file: %s\n", strerror(errno));
         exit(EXIT_FAILURE);
     }
@@ -37,7 +32,7 @@ int main(int argc, char* argv[]){
                             /***************
                             *** CODING ***
                             ****************/
-    if(strcmp(argv[2], "code") == STRINGS_EQUAL){
+    if(strcmp(argv[1], "code") == STRINGS_EQUAL){
         char* response = NULL;
         int check_status = 0;
         printf("%s\n", check(response, &check_status));
@@ -45,7 +40,7 @@ int main(int argc, char* argv[]){
             exit(EXIT_FAILURE);
 
         FILE* encrypted;
-        if((encrypted = fopen("coded", "w+")) == NULL){
+        if((encrypted = fopen(argv[3], "w+")) == NULL){
             printf("Error while creating new file: %s\n", strerror(errno));
             exit(EXIT_FAILURE);
         }
@@ -54,10 +49,10 @@ int main(int argc, char* argv[]){
         while(!feof(input_file)){   //read characters from file while end of file is reached
             input = fgetc(input_file);
             /** check is the read character a letter **/
-            if(input >=65 && input <=90 ||
-               input >= 97 && input <= 122){
+            if((input >=65) && (input <=90) ||
+                    (input >= 97) && (input <= 122)){
                 /**adjust all lowercase letters to uppercase**/
-                if(input >= 97 && input <= 122)
+                if((input >= 97) && (input <= 122))
                     input -= 32;
                 word_from_file[char_pos] = (char) input;
                 char_pos++;
@@ -78,7 +73,7 @@ int main(int argc, char* argv[]){
                             /***************
                             *** DECODING ***
                             ****************/
-    if(strcmp(argv[2], "decode") == STRINGS_EQUAL){
+    if(strcmp(argv[1], "decode") == STRINGS_EQUAL){
         char* response = NULL;
         int check_status = 0;
         printf("%s\n", check(response, &check_status));
@@ -86,7 +81,7 @@ int main(int argc, char* argv[]){
             exit(EXIT_FAILURE);
 
         FILE* decrypted;
-        if((decrypted = fopen("decoded", "w+")) == NULL){
+        if((decrypted = fopen(argv[3], "w+")) == NULL){
             printf("Error while creating new file: %s\n", strerror(errno));
             exit(EXIT_FAILURE);
         }
@@ -95,10 +90,10 @@ int main(int argc, char* argv[]){
         while(!feof(input_file)){
             input = fgetc(input_file);
             /** check is the read character a letter **/
-            if(input >=65 && input <=90 ||
-               input >= 97 && input <= 122){
+            if((input >=65) && (input <=90) ||
+                    (input >= 97) && (input <= 122)){
                 /**adjust all lowercase letters to uppercase**/
-                if(input >= 97 && input <= 122)
+                if((input >= 97) && (input <= 122))
                     input -= 32;
                 word_from_file[char_pos] = (char) input;
                 char_pos++;
@@ -117,7 +112,7 @@ int main(int argc, char* argv[]){
     }
     else
     {
-        printf("Invalid operation type: %s\n", argv[2]);
+        printf("Invalid operation type: %s\n", argv[1]);
         printf("Available operations on file: code, decode\n");
         exit(EXIT_FAILURE);
     }
