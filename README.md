@@ -7,3 +7,6 @@ Program encrypts the text using Viginere cipher. Decryption is possible IF the s
 2) In terminal type "make";
 
 3) Call program with no parameters to see usage.
+
+
+Keyword and alphabet offset are located in file operate.c.
