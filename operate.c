@@ -8,51 +8,38 @@
 #define ASCII_A 65
 #define A_TO_Z  26
 
-/*
-Implementation feature is that the KEYWORD and OFFSET (alphabet offset) defined in this file.
-It might be not convenient if dymanic encrypting/decrypting with different keywords and offsets is needed, but it could be implemented with some upgrade of the code.
-In case of changing the keyword OR offset value you should execute make again to get the executable file "vgnr" with desired keyword and offset.
-*/
-
-/** ALPHABET OFFSET **/
-#define OFFSET 11  //value must be from 0 to 25
-
-/** KEYWORD **/
-static char keyword[] = "ALPHA";
-
-
 #define KEYWORD_MAX_LEN 12
-#define KEYWORD_LEN (int)strlen(keyword)
 
-char* check(char* string, int* status){
-
-    if(KEYWORD_LEN > KEYWORD_MAX_LEN){
+char* check(char* keyword, char* string, int* status){
+    int keyword_len = (int)strlen(keyword);
+    if(keyword_len > KEYWORD_MAX_LEN){
         *status = 1;
         return string= " Keyword too long! Exit.";
     }
 
-    for(int i = 0; i < KEYWORD_LEN; i++){
+    for(int i = 0; i < keyword_len; i++){
         if((keyword[i] <= 65) && (keyword[i] >= 90)){
             *status = 1;
-            return string = "ERROR! Word must consist of capital letters!\n";
+            return string = "ERROR! Keyword must consist of capital letters!\n";
         }
     }
     return string = "Processing...\n";
 };
 
-void encode(char* origin_word, FILE* coded_file){
+void encode(char* keyword, char* origin_word, FILE* coded_file){
+    int keyword_len = (int)strlen(keyword);
     int coded = 0;
     int j = 0;
     for(int i = 0; i < strlen(origin_word); i++){
         /**loop keyword if original word is longer**/
-        if(i >= KEYWORD_LEN){
-            if((j = i/KEYWORD_LEN) < 1)
+        if(i >= keyword_len){
+            if((j = i/keyword_len) < 1)
                 j = 1;
-            coded = (keyword[i - j*KEYWORD_LEN] + origin_word[i] + OFFSET - 1);
+            coded = (keyword[i - j*keyword_len] + origin_word[i] + keyword_len - 1);
         }
         else
         {
-            coded = (keyword[i] + origin_word[i] + OFFSET - 1);
+            coded = (keyword[i] + origin_word[i] + keyword_len - 1);
         }
 
         /**adjust coded letter**/
@@ -65,22 +52,23 @@ void encode(char* origin_word, FILE* coded_file){
     }
 }
 
-void decode(char* coded_word, FILE* decoded_file){
+void decode(char* keyword, char* coded_word, FILE* decoded_file){
+    int keyword_len = (int)strlen(keyword);
     int decoded = 0;
     int j = 0;
 
     for(int i = 0; i < strlen(coded_word); i++){
-        if(i >= KEYWORD_LEN){
-            if((j = i/KEYWORD_LEN) < 1)
+        if(i >= keyword_len){
+            if((j = i/keyword_len) < 1)
                 j = 1;
-            decoded = coded_word[i] - keyword[i - j*KEYWORD_LEN] + A_TO_Z;
+            decoded = coded_word[i] - keyword[i - j*keyword_len] + A_TO_Z;
         }
         else
         {
             decoded = coded_word[i] - keyword[i] + A_TO_Z;
         }
 
-        decoded += ASCII_A - OFFSET;
+        decoded += ASCII_A - keyword_len;
 
         if(decoded > ASCII_Z)
             decoded -= A_TO_Z;
