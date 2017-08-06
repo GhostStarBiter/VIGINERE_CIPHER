@@ -1,13 +1,35 @@
-# VIGINERE_CIPHER
-Program encrypts the text using Viginere cipher. Decryption is possible IF the same KEYWORD and OFFSET will be used for decrypting.
+## Advanced Viginere Cyper
 
+Program encrypts the text files using Viginere cipher.
 
-1) Copy all files to one folder on your computer;
+### Installation
 
-2) In terminal type "make" to generate executable or "sudo make" to call program from any folder;
+Clone repository. Goto clonned repo dir and run `make`:
 
-3) Call program with no parameters to see usage.
+```
+git clone git@github.com:GhostStarBiter/VIGINERE_CIPHER.git
+cd path/to/VIGINERE_CIPHER && sudo make
+```
+
+### Usage
+
+To encode text file:
+```
+vgnr code /path/to/original/file /path/to/encrypted/file KEYWORD
+```
+
+To decode text file:
+```
+vgnr decode /path/to/encoded/file /path/to/decoded/file KEYWORD
+```
+
+To run usage help hit:
+```
+vgnr 
+```
 
 CLOSEST IMPROVEMENT:
+
      - keyword contains of lower and upper case letters;
+     
      - encrypted/decrypted text contains of lower and upper case letters;
