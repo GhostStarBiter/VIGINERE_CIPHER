@@ -31,7 +31,7 @@ To run usage help hit:
 vgnr 
 ```
 
-CLOSEST IMPROVEMENT:
+FUTURE IMPROVEMENT:
 
      - keyword contains of lower and upper case letters;
      
